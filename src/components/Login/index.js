@@ -119,7 +119,7 @@ class Login extends Component {
             src="https://res.cloudinary.com/pavankalyanbandaru/image/upload/v1651083200/tasty-kitchens/website-logo.png"
             alt="website logo"
           />
-          <p className="website-title">Tasty Kitchens</p>
+          <h1 className="login-website-title">Tasty Kitchens</h1>
 
           <h1 className="login-heading">Login</h1>
 
