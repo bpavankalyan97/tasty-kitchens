@@ -110,6 +110,9 @@ class Login extends Component {
 
     return (
       <div className="login-container">
+        <div className="login-heading-mobile-container">
+          <h1 className="login-heading-mobile">Login</h1>
+        </div>
         <form className="form-container" onSubmit={this.onFormSubmit}>
           <img
             className="login-website-logo"
