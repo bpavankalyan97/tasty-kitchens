@@ -1,0 +1,131 @@
+.home-route {
+  padding: 0 24px;
+}
+
+.offers-container {
+  margin: 28px 0;
+}
+
+.offer-image {
+  width: 100%;
+}
+
+.home-heading {
+  color: #183b56;
+  margin-bottom: 0;
+}
+
+.home-description {
+  color: #64748b;
+  margin: 12px 0;
+}
+
+.sort-by-container {
+  color: #475569;
+  display: flex;
+  align-items: center;
+}
+
+.sort-icon {
+  font-size: 20px;
+}
+
+.sort-by-text {
+  margin: 0;
+  margin-left: 8px;
+}
+
+.sort-by-select {
+  width: 100px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #475569;
+}
+
+.hr {
+  border: 1px solid #cbd2d9;
+}
+
+.loader-container {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.restaurants-container {
+  margin-top: 28px;
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  list-style-type: none;
+  justify-content: space-between;
+}
+
+.pagination-container {
+  display: flex;
+  margin-bottom: 28px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-button {
+  height: 28px;
+  width: 28px;
+  padding: 0;
+  border-radius: 2px;
+  border: 1px solid #334155;
+}
+
+.pagination-icon {
+  color: #334155;
+}
+
+.page-number {
+  margin: 0 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .home-route {
+    padding: 0 48px;
+  }
+
+  .offers-container {
+    margin: 36px 0;
+  }
+
+  .home-sub-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .restaurants-container {
+    margin-top: 36px;
+  }
+
+  .pagination-container {
+    margin-bottom: 36px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .home-route {
+    padding: 0 100px;
+  }
+
+  .offers-container {
+    margin: 48px 0;
+  }
+
+  .restaurants-container {
+    margin-top: 48px;
+  }
+
+  .pagination-container {
+    margin-top: 24px;
+    margin-bottom: 48px;
+  }
+}
