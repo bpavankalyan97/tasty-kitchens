@@ -2,6 +2,9 @@ import {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 
+import Loader from 'react-loader-spinner'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+
 import './index.css'
 
 class Login extends Component {
@@ -9,6 +12,7 @@ class Login extends Component {
     username: '',
     password: '',
     errorMessage: '',
+    showLoading: false,
     showErrorMessage: false,
   }
 
@@ -26,6 +30,10 @@ class Login extends Component {
 
   onFormSubmit = event => {
     event.preventDefault()
+    this.setState({
+      showLoading: true,
+      showErrorMessage: false,
+    })
     const {username, password} = this.state
     this.postLoginCredentials(username, password)
   }
@@ -64,8 +72,15 @@ class Login extends Component {
     this.setState({
       errorMessage: errorMsg,
       showErrorMessage: true,
+      showLoading: false,
     })
   }
+
+  renderLoadingView = () => (
+    <div className="login-button">
+      <Loader type="ThreeDots" color="#ffffff" height={14} width={48} />
+    </div>
+  )
 
   renderUsernameField = () => {
     const {username} = this.state
@@ -106,7 +121,7 @@ class Login extends Component {
   }
 
   renderFormContainer = () => {
-    const {errorMessage, showErrorMessage} = this.state
+    const {errorMessage, showLoading, showErrorMessage} = this.state
 
     return (
       <div className="login-container">
@@ -129,9 +144,14 @@ class Login extends Component {
           {showErrorMessage && (
             <p className="login-error-message">{errorMessage}</p>
           )}
-          <button className="login-button" type="submit">
-            Login
-          </button>
+
+          {showLoading ? (
+            this.renderLoadingView()
+          ) : (
+            <button className="login-button" type="submit">
+              Login
+            </button>
+          )}
         </form>
       </div>
     )
