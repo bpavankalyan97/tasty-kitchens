@@ -39,7 +39,7 @@ class Home extends Component {
     pageNumber: 1,
     offersList: [],
     restaurantsList: [],
-    sortByValue: sortByOptions[1].value,
+    sortByValue: sortByOptions[0].value,
     offersFetchStatus: statusConstants.initial,
     restaurantsFetchStatus: statusConstants.initial,
   }
