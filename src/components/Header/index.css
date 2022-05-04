@@ -56,7 +56,9 @@
   margin: 0 10px;
 }
 
-.nav-item-link {
+.nav-item-link,
+.nav-item-selected-link {
+  font-size: 16px;
   color: #334155;
   font-weight: 500;
   text-decoration: none;
@@ -64,8 +66,6 @@
 
 .nav-item-selected-link {
   color: #f7931e;
-  font-weight: 500;
-  text-decoration: none;
 }
 
 .logout-button {
@@ -104,6 +104,14 @@
     margin-left: auto;
     align-items: center;
     list-style-type: none;
+  }
+
+  .nav-item-selected-link {
+    font-size: 18px;
+  }
+
+  .logout-button {
+    font-size: 15px;
   }
 }
 
