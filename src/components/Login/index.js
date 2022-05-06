@@ -12,7 +12,8 @@ class Login extends Component {
     username: '',
     password: '',
     errorMessage: '',
-    showLoading: false,
+    showLoginLoading: false,
+    showTrailLoading: false,
     showErrorMessage: false,
   }
 
@@ -31,14 +32,23 @@ class Login extends Component {
   onFormSubmit = event => {
     event.preventDefault()
     this.setState({
-      showLoading: true,
+      showLoginLoading: true,
       showErrorMessage: false,
     })
     const {username, password} = this.state
     this.postLoginCredentials(username, password)
   }
 
-  postLoginCredentials = async (username, password) => {
+  // Trail Login JWT Token will expire in 1 hour
+  onClickTrailLogin = () => {
+    this.setState({
+      showTrailLoading: true,
+      showErrorMessage: false,
+    })
+    this.postLoginCredentials('rahul', 'rahul@2021', 0.041)
+  }
+
+  postLoginCredentials = async (username, password, expiryDays = 7) => {
     const credentials = {
       username,
       password,
@@ -53,15 +63,15 @@ class Login extends Component {
     const data = await response.json()
 
     if (response.ok) {
-      this.onLoginSuccessful(data.jwt_token)
+      this.onLoginSuccessful(data.jwt_token, expiryDays)
     } else {
       this.onLoginFailure(data.error_msg)
     }
   }
 
-  onLoginSuccessful = jwtToken => {
+  onLoginSuccessful = (jwtToken, expiryDays) => {
     Cookies.set('jwt_token', jwtToken, {
-      expires: 30,
+      expires: expiryDays,
     })
 
     const {history} = this.props
@@ -72,13 +82,13 @@ class Login extends Component {
     this.setState({
       errorMessage: errorMsg,
       showErrorMessage: true,
-      showLoading: false,
+      showLoginLoading: false,
     })
   }
 
-  renderLoadingView = () => (
-    <div className="login-button">
-      <Loader type="ThreeDots" color="#ffffff" height={14} width={48} />
+  renderLoadingView = (color = '#ffffff', prefix = '') => (
+    <div className={`${prefix}login-button`}>
+      <Loader type="ThreeDots" color={color} height={14} width={48} />
     </div>
   )
 
@@ -120,8 +130,36 @@ class Login extends Component {
     )
   }
 
+  renderButtonsContainer = () => {
+    const {showLoginLoading, showTrailLoading} = this.state
+
+    return (
+      <div className="login-buttons-container">
+        {showLoginLoading ? (
+          this.renderLoadingView()
+        ) : (
+          <button className="login-button" type="submit">
+            Login
+          </button>
+        )}
+
+        {showTrailLoading ? (
+          this.renderLoadingView('#f7931e', 'trail-')
+        ) : (
+          <button
+            className="trail-login-button"
+            type="button"
+            onClick={this.onClickTrailLogin}
+          >
+            Guest Login
+          </button>
+        )}
+      </div>
+    )
+  }
+
   renderFormContainer = () => {
-    const {errorMessage, showLoading, showErrorMessage} = this.state
+    const {errorMessage, showErrorMessage} = this.state
 
     return (
       <div className="login-container">
@@ -145,13 +183,7 @@ class Login extends Component {
             <p className="login-error-message">{errorMessage}</p>
           )}
 
-          {showLoading ? (
-            this.renderLoadingView()
-          ) : (
-            <button className="login-button" type="submit">
-              Login
-            </button>
-          )}
+          {this.renderButtonsContainer()}
         </form>
       </div>
     )
