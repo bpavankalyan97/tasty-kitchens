@@ -60,6 +60,10 @@
   background-color: transparent;
 }
 
+.li-add-button:hover {
+  background-color: #fdefde;
+}
+
 @media screen and (min-width: 768px) {
   .food-item-li {
     width: 50%;
