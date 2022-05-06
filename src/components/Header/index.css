@@ -78,6 +78,10 @@
   background-color: #f7931e;
 }
 
+.logout-button:hover {
+  background-color: #ffaa4a;
+}
+
 .close-icon {
   color: #334155;
   font-size: 18px;
