@@ -45,6 +45,13 @@
   background-color: #f7931e;
 }
 
+.cart-default-button:hover {
+  font-size: 16px;
+  padding: 7px 14px;
+  border: 1px solid #f7931e;
+  background-color: #ffaa4a;
+}
+
 .cart-section {
   margin: 32px 24px;
   border-radius: 8px;

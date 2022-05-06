@@ -13,6 +13,10 @@
   background-color: transparent;
 }
 
+.counter-button:hover {
+  background-color: #e7e7e7;
+}
+
 .counter-count {
   margin: 0 10px;
 }
